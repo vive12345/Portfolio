@@ -109,7 +109,7 @@ const PublicationCard = ({
               ) : (
                 <>
                   <FaBook className="mr-2" />
-                  <span>Publications</span>
+                  <span>Open Source Project Contribution</span>
                 </>
               )}
             </h5>

@@ -29,7 +29,7 @@ const CONFIG = {
       },
     },
     external: {
-      header: 'My Projects',
+      header: 'My Open Source Project Commits',
       // To hide the `External Projects` section, keep it empty.
       projects: [
         {
@@ -121,6 +121,11 @@ const CONFIG = {
       from: 'December 2024',
       to: 'Present',
       companyLink: 'https://asu.edu',
+      description: [
+        'Managed IT support tickets and resolved technical issues',
+        'Organized and maintained database systems'
+      ],
+      letterLink: 'https://example.com/offer-letter.pdf',
     },
     {
       company: 'Teksun IoT & AI Solutions',
@@ -128,6 +133,11 @@ const CONFIG = {
       from: 'May 2023',
       to: 'October 2023',
       companyLink: 'https://teksun.com/', 
+      description: [
+        'Managed IT support tickets and resolved technical issues',
+        'Organized and maintained database systems'
+      ],
+      letterLink: 'https://example.com/offer-letter.pdf',
     },
     {
       company: 'EzTechStack',
@@ -135,6 +145,11 @@ const CONFIG = {
       from: 'January 2022',
       to: 'September 2022',
       companyLink: 'https://clutch.co/profile/eztechstack', 
+      description: [
+        'Managed IT support tickets and resolved technical issues',
+        'Organized and maintained database systems'
+      ],
+      letterLink: 'https://example.com/offer-letter.pdf',
     },
   ],
   educations: [
@@ -244,6 +259,15 @@ lifeOutsideWork: [
 
 volunteerWork: [
   {
+    title: "ML Engineer",
+    organization: "MOEDA Foundation",
+    location: "Remote",
+    period: "Jun 2023 - Present",
+    description: "Develop machine learning models to support sustainable agricultural practices in developing regions. Created prediction algorithms for crop yields and resource optimization that helped small-scale farmers increase productivity by 15-20% while reducing input costs.",
+    icon: "GiArtificialIntelligence",
+    imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+  },
+  {
     title: "Event Management Core Member",
     organization: "Rotaract Club",
     location: "University Chapter",
@@ -261,15 +285,7 @@ volunteerWork: [
     icon: "FaUsers",
     imageUrl: "https://images.unsplash.com/photo-1560252829-804f1aedf1be?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
   },
-  {
-    title: "ML Engineer",
-    organization: "MOEDA Foundation",
-    location: "Remote",
-    period: "Jun 2023 - Present",
-    description: "Develop machine learning models to support sustainable agricultural practices in developing regions. Created prediction algorithms for crop yields and resource optimization that helped small-scale farmers increase productivity by 15-20% while reducing input costs.",
-    icon: "GiArtificialIntelligence",
-    imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-  }
+  
 ],
   // Display articles from your medium or dev account. (Optional)
   blog: {

@@ -7,6 +7,7 @@ import {
   FaGraduationCap,
   FaUniversity,
   FaExternalLinkAlt,
+  FaAward
 } from "react-icons/fa";
 interface EducationItemProps {
   time: string;
@@ -100,12 +101,16 @@ const EducationItem: React.FC<EducationItemProps> = ({
           </div>
         )}
 
-        {awards && awards.length > 0 && (
-          <div>
-            <h4 className="font-semibold mb-1">Achievements & Awards:</h4>
-            <ul className="list-disc pl-5 opacity-70 space-y-1">
+         {/* Awards - full width */}
+         {awards && awards.length > 0 && (
+          <div className="mt-4 p-3 bg-base-200 bg-opacity-30 rounded-lg">
+            <h4 className="font-semibold mb-2 flex items-center">
+              <FaAward className="mr-2 text-primary opacity-70" />
+              Achievements & Awards
+            </h4>
+            <ul className="list-disc pl-5 opacity-70 space-y-1 mt-2">
               {awards.map((award, i) => (
-                <li key={i}>{award}</li>
+                <li key={i} className="pl-1">{award}</li>
               ))}
             </ul>
           </div>

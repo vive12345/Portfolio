@@ -240,15 +240,7 @@ const GitProfile = ({ config }: { config: Config }) => {
                       />
                     </div>
                   )}
-                  {/* Skills Section */}
-                  {sanitizedConfig.skills.length !== 0 && (
-                    <div className={sectionClass} id="skills">
-                      <SkillCard
-                        loading={loading}
-                        skills={sanitizedConfig.skills}
-                      />
-                    </div>
-                  )}
+                  
                   {/* GitHub Projects Section */}
                   {sanitizedConfig.projects.github.display && (
                     <div className={sectionClass} id="projects">
@@ -262,12 +254,34 @@ const GitProfile = ({ config }: { config: Config }) => {
                       />
                     </div>
                   )}
+                  {/* External Projects Section */}
+                  {sanitizedConfig.projects.external.projects.length !== 0 && (
+                    <div className={sectionClass} id="external-projects">
+                      <ExternalProjectCard
+                        loading={loading}
+                        header={sanitizedConfig.projects.external.header}
+                        externalProjects={
+                          sanitizedConfig.projects.external.projects
+                        }
+                        googleAnalyticId={sanitizedConfig.googleAnalytics.id}
+                      />
+                    </div>
+                  )}
                   {/* Publications Section */}
                   {sanitizedConfig.publications.length !== 0 && (
                     <div className={sectionClass} id="publications">
                       <PublicationCard
                         loading={loading}
                         publications={sanitizedConfig.publications}
+                      />
+                    </div>
+                  )}
+                  {/* Skills Section */}
+                  {sanitizedConfig.skills.length !== 0 && (
+                    <div className={sectionClass} id="skills">
+                      <SkillCard
+                        loading={loading}
+                        skills={sanitizedConfig.skills}
                       />
                     </div>
                   )}
@@ -280,15 +294,7 @@ const GitProfile = ({ config }: { config: Config }) => {
                       />
                     </div>
                   )}
-                  {/* Life Outside Work Section */}
-                  {sanitizedConfig.lifeOutsideWork.length !== 0 && (
-                    <div className={sectionClass} id="life-outside">
-                      <LifeOutsideWork
-                        loading={loading}
-                        lifeAreas={sanitizedConfig.lifeOutsideWork}
-                      />
-                    </div>
-                  )}
+              
                   {sanitizedConfig.volunteerWork?.length !== 0 && (
                     <div className={sectionClass} id="volunteer">
                       <VolunteerWork
@@ -297,16 +303,12 @@ const GitProfile = ({ config }: { config: Config }) => {
                       />
                     </div>
                   )}
-                  {/* External Projects Section */}
-                  {sanitizedConfig.projects.external.projects.length !== 0 && (
-                    <div className={sectionClass} id="external-projects">
-                      <ExternalProjectCard
+                  {/* Life Outside Work Section */}
+                  {sanitizedConfig.lifeOutsideWork.length !== 0 && (
+                    <div className={sectionClass} id="life-outside">
+                      <LifeOutsideWork
                         loading={loading}
-                        header={sanitizedConfig.projects.external.header}
-                        externalProjects={
-                          sanitizedConfig.projects.external.projects
-                        }
-                        googleAnalyticId={sanitizedConfig.googleAnalytics.id}
+                        lifeAreas={sanitizedConfig.lifeOutsideWork}
                       />
                     </div>
                   )}

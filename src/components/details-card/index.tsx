@@ -45,9 +45,9 @@ const companyLink = (company: string): string => {
   return `https://github.com/${company.substring(1)}`;
 };
 
-const transcript = (transcriptUrl: string): string => {
-  return transcriptUrl;
-};
+// const transcript = (transcriptUrl: string): string => {
+//   return transcriptUrl;
+// };
 
 const getFormattedMastodonValue = (
   mastodonValue: string,
