@@ -1,5 +1,5 @@
 // gitprofile.config.ts
-
+import TestimonialCard from './';
 const CONFIG = {
   github: {
     username: 'vive12345', // Your GitHub org/user name. (This is the only required config)
@@ -127,14 +127,14 @@ const CONFIG = {
       position: 'Software Engineer Intern',
       from: 'May 2023',
       to: 'October 2023',
-      companyLink: '', // Add company website if available
+      companyLink: 'https://teksun.com/', 
     },
     {
       company: 'EzTechStack',
       position: 'Software Developer Intern',
       from: 'January 2022',
       to: 'September 2022',
-      companyLink: '', // Add company website if available
+      companyLink: 'https://clutch.co/profile/eztechstack', 
     },
   ],
   educations: [
@@ -178,6 +178,14 @@ const CONFIG = {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     },
+  ],
+  testimonials: [
+    {
+      name: 'John Doe',
+      role: 'Manager',
+      company: 'ABC Company',
+      testimonial: 'Great work and excellent skills!'
+    }
   ],
   // Display articles from your medium or dev account. (Optional)
   blog: {

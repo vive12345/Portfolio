@@ -246,7 +246,12 @@ interface Publication {
   link?: string;
   description?: string;
 }
-
+interface Testimonial {
+  name: string;
+  role: string;
+  company?: string;
+  testimonial: string;
+}
 interface GoogleAnalytics {
   /**
    * GA3 tracking id/GA4 tag id UA-XXXXXXXXX-X | G-XXXXXXXXXX
@@ -404,7 +409,7 @@ interface Config {
    * Publication list
    */
   publications?: Array<Publication>;
-
+  testimonials?: Array<Publication>;
   /**
    * Resume
    */

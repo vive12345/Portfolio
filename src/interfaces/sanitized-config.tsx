@@ -101,7 +101,12 @@ export interface SanitizedPublication {
   link?: string;
   description?: string;
 }
-
+export interface SanitizedTestimonial {
+  name: string;
+  role: string;
+  company?: string;
+  testimonial: string;
+}
 export interface SanitizedGoogleAnalytics {
   id?: string;
 }
@@ -148,10 +153,11 @@ export interface SanitizedConfig {
   educations: Array<SanitizedEducation>;
   certifications: Array<SanitizedCertification>;
   publications: Array<SanitizedPublication>;
+  testimonials: Array<SanitizedTestimonial>;
   googleAnalytics: SanitizedGoogleAnalytics;
   hotjar: SanitizedHotjar;
   blog: SanitizedBlog;
-  themeConfig: SanitizedThemeConfig;
+  // themeConfig: SanitizedThemeConfig;
   footer?: string;
   enablePWA: boolean;
 }
