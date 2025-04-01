@@ -105,6 +105,8 @@ export const getSanitizedConfig = (
         ) || [],
       publications: config?.publications?.filter((item) => item.title) || [],
       testimonials: config?.testimonials?.filter((item) => item.name) || [],
+      lifeOutsideWork: config?.lifeOutsideWork || [],
+      volunteerWork: config?.volunteerWork || [],
 
       googleAnalytics: {
         id: config?.googleAnalytics?.id,

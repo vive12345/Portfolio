@@ -46,7 +46,7 @@ const Navbar = ({ github, social, loading }: NavbarProps) => {
     { label: 'SKILLS', link: '#skills' },
     { label: 'CERTIFICATIONS', link: '#certifications' },
     { label: 'VOLUNTEER', link: '#volunteer' },
-    { label: 'LIFE OUTSIDE', link: '#contact' },
+    { label: 'LIFE OUTSIDE', link: '#life-outside' },
   ];
   
   // Function to handle smooth scrolling

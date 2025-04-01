@@ -251,6 +251,21 @@ interface Testimonial {
   testimonial: string;
   name: string;
 }
+interface LifeArea {
+  title: string;
+  description: string;
+  icon: string;
+  imageUrl?: string;
+}
+interface VolunteerWork {
+  title: string;
+  organization: string;
+  location?: string;
+  period: string;
+  description: string;
+  icon: string;
+  imageUrl?: string;
+}
 interface GoogleAnalytics {
   /**
    * GA3 tracking id/GA4 tag id UA-XXXXXXXXX-X | G-XXXXXXXXXX
@@ -409,6 +424,8 @@ interface Config {
    */
   publications?: Array<Publication>;
   testimonials?: Array<Testimonial>;
+  lifeOutsideWork?: Array<LifeArea>;
+  volunteerWork?: Array<VolunteerWork>;
   /**
    * Resume
    */

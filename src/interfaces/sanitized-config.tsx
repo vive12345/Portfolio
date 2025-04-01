@@ -102,9 +102,23 @@ export interface SanitizedPublication {
   description?: string;
 }
 export interface SanitizedTestimonial {
- 
   testimonial: string;
   name: string;
+}
+export interface SanitizedLifeArea {
+  title: string;
+  description: string;
+  icon: string;
+  imageUrl?: string;
+}
+export interface SanitizedVolunteerWork {
+  title: string;
+  organization: string;
+  location?: string;
+  period: string;
+  description: string;
+  icon: string;
+  imageUrl?: string;
 }
 export interface SanitizedGoogleAnalytics {
   id?: string;
@@ -153,6 +167,8 @@ export interface SanitizedConfig {
   certifications: Array<SanitizedCertification>;
   publications: Array<SanitizedPublication>;
   testimonials: Array<SanitizedTestimonial>;
+  lifeOutsideWork: Array<SanitizedLifeArea>;
+  volunteerWork?: Array<VolunteerWork>;
   googleAnalytics: SanitizedGoogleAnalytics;
   hotjar: SanitizedHotjar;
   blog: SanitizedBlog;

@@ -18,8 +18,8 @@ import ExternalProjectCard from "./external-project-card";
 import BlogCard from "./blog-card";
 import Footer from "./footer";
 import Starfield from "./starfield";
-
-
+import LifeOutsideWork from "./lifeoutsidework-card";
+import VolunteerWork from "./volunteer-card";
 // Constants and utils
 import {
   CustomError,
@@ -271,12 +271,29 @@ const GitProfile = ({ config }: { config: Config }) => {
                       />
                     </div>
                   )}
-                  {/* Publications Section */}
+                  {/* testimonials Section */}
                   {sanitizedConfig.testimonials.length !== 0 && (
                     <div className={sectionClass} id="testimonials">
                       <TestimonialCard
                         loading={loading}
                         testimonials={sanitizedConfig.testimonials}
+                      />
+                    </div>
+                  )}
+                  {/* Life Outside Work Section */}
+                  {sanitizedConfig.lifeOutsideWork.length !== 0 && (
+                    <div className={sectionClass} id="life-outside">
+                      <LifeOutsideWork
+                        loading={loading}
+                        lifeAreas={sanitizedConfig.lifeOutsideWork}
+                      />
+                    </div>
+                  )}
+                  {sanitizedConfig.volunteerWork.length !== 0 && (
+                    <div className={sectionClass} id="volunteer">
+                      <VolunteerWork
+                        loading={loading}
+                        volunteerWork={sanitizedConfig.volunteerWork}
                       />
                     </div>
                   )}

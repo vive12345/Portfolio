@@ -181,13 +181,96 @@ const CONFIG = {
   ],
   testimonials:[
     {
-      testimonial: '"Publication Tit11111111le"',
+      testimonial: 'Publication Tit11111111le',
       name: 'Journal Name',
       },
     {
       testimonial: 'Publication Title',
       name: 'Journal Name', },
   ],
+ // Add this to your gitprofile.config.ts
+
+lifeOutsideWork: [
+  {
+    title: "Fitness & Wellness",
+    description: "I'm passionate about maintaining a healthy lifestyle through yoga, running, and strength training. Regular exercise helps me stay energized, focused, and balanced both mentally and physically.",
+    icon: "FaRunning", 
+    imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Continuous Learning",
+    description: "I'm always expanding my knowledge through online courses, books, and podcasts. I believe in lifelong learning and regularly dive into new subjects beyond software engineering.",
+    icon: "FaBrain",
+    imageUrl: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Music & Creativity",
+    description: "Playing and listening to music fuels my creativity. I enjoy learning new songs and occasionally performing. Music provides a perfect balance to my technical work.",
+    icon: "FaGuitar",
+    imageUrl: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Travel & Exploration",
+    description: "Exploring new cultures, cuisine, and landscapes is one of my greatest joys. Travel broadens my perspective and inspires creativity in both my personal and professional life.",
+    icon: "FaPlane",
+    imageUrl: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Reading & Literature",
+    description: "Books on technology, science fiction, and personal development fill my shelves. Reading widely helps me gain new perspectives and continuously evolve my thinking.",
+    icon: "FaBookOpen",
+    imageUrl: "https://images.unsplash.com/photo-1515592302748-6937af5c5268?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Open Source & Side Projects",
+    description: "I contribute to open source and develop personal projects to experiment with new technologies. Building things for fun keeps my skills sharp and feeds my curiosity.",
+    icon: "FaCode",
+    imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Hiking & Nature",
+    description: "Weekends often find me on mountain trails, disconnecting from technology and reconnecting with nature. The outdoors provides perspective and balance to my tech-focused career.",
+    icon: "GiMountainClimbing",
+    imageUrl: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Cooking & Culinary Arts",
+    description: "I love experimenting with recipes from around the world. Cooking is both creative and analytical - much like programming - and sharing meals brings people together.",
+    icon: "MdFoodBank",
+    imageUrl: "https://images.unsplash.com/photo-1556911073-a517e752729c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+  }
+],
+  // Add this to your gitprofile.config.ts
+
+volunteerWork: [
+  {
+    title: "Event Management Core Member",
+    organization: "Rotaract Club",
+    location: "University Chapter",
+    period: "Jan 2021 - Dec 2022",
+    description: "Led a team of 12 volunteers to plan and execute community service events, including fundraisers and educational workshops. Coordinated logistics, managed budgets, and ensured successful event execution with over 95% positive feedback from attendees.",
+    icon: "SiRotaryinternational",
+    imageUrl: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Core Committee Member",
+    organization: "Rotaract Club",
+    location: "District Level",
+    period: "Mar 2022 - Present",
+    description: "Serve on the district-level committee overseeing 15+ university chapters. Develop strategic initiatives to increase membership, improve community impact, and strengthen relationships with partner organizations. Helped expand club reach by 30%.",
+    icon: "FaUsers",
+    imageUrl: "https://images.unsplash.com/photo-1560252829-804f1aedf1be?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "ML Engineer",
+    organization: "MOEDA Foundation",
+    location: "Remote",
+    period: "Jun 2023 - Present",
+    description: "Develop machine learning models to support sustainable agricultural practices in developing regions. Created prediction algorithms for crop yields and resource optimization that helped small-scale farmers increase productivity by 15-20% while reducing input costs.",
+    icon: "GiArtificialIntelligence",
+    imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+  }
+],
   // Display articles from your medium or dev account. (Optional)
   blog: {
     source: 'dev', // medium | dev
