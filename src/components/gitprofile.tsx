@@ -289,11 +289,11 @@ const GitProfile = ({ config }: { config: Config }) => {
                       />
                     </div>
                   )}
-                  {sanitizedConfig.volunteerWork.length !== 0 && (
+                  {sanitizedConfig.volunteerWork?.length !== 0 && (
                     <div className={sectionClass} id="volunteer">
                       <VolunteerWork
                         loading={loading}
-                        volunteerWork={sanitizedConfig.volunteerWork}
+                        volunteerWorks={sanitizedConfig.volunteerWork || []}
                       />
                     </div>
                   )}
