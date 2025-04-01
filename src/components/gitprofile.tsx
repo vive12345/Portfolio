@@ -6,18 +6,19 @@ import { HelmetProvider } from "react-helmet-async";
 // Components
 import Navbar from "./navbar";
 import ErrorPage from "./error-page";
-import HeadTagEditor from "./head-tag-editor";
+// import HeadTagEditor from "./head-tag-editor";
 import AboutMe from "./about-me";
 import ExperienceCard from "./experience-card";
 import EducationCard from "./education-card";
 import SkillCard from "./skill-card";
 import GithubProjectCard from "./github-project-card";
 import PublicationCard from "./publication-card";
+import TestimonialCard from "./testimonial-card";
 import ExternalProjectCard from "./external-project-card";
 import BlogCard from "./blog-card";
 import Footer from "./footer";
 import Starfield from "./starfield";
-import TestimonialCard from "./testimonial-card";
+
 
 // Constants and utils
 import {
@@ -270,6 +271,7 @@ const GitProfile = ({ config }: { config: Config }) => {
                       />
                     </div>
                   )}
+                  {/* Publications Section */}
                   {sanitizedConfig.testimonials.length !== 0 && (
                     <div className={sectionClass} id="testimonials">
                       <TestimonialCard

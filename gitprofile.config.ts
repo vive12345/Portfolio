@@ -1,5 +1,5 @@
 // gitprofile.config.ts
-import TestimonialCard from './';
+// import TestimonialCard from './';
 const CONFIG = {
   github: {
     username: 'vive12345', // Your GitHub org/user name. (This is the only required config)
@@ -179,13 +179,14 @@ const CONFIG = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     },
   ],
-  testimonials: [
+  testimonials:[
     {
-      name: 'John Doe',
-      role: 'Manager',
-      company: 'ABC Company',
-      testimonial: 'Great work and excellent skills!'
-    }
+      testimonial: '"Publication Tit11111111le"',
+      name: 'Journal Name',
+      },
+    {
+      testimonial: 'Publication Title',
+      name: 'Journal Name', },
   ],
   // Display articles from your medium or dev account. (Optional)
   blog: {

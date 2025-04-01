@@ -246,11 +246,10 @@ interface Publication {
   link?: string;
   description?: string;
 }
-interface Testimonial {
-  name: string;
-  role: string;
-  company?: string;
+
+interface Testimonial {  
   testimonial: string;
+  name: string;
 }
 interface GoogleAnalytics {
   /**
@@ -409,7 +408,7 @@ interface Config {
    * Publication list
    */
   publications?: Array<Publication>;
-  testimonials?: Array<Publication>;
+  testimonials?: Array<Testimonial>;
   /**
    * Resume
    */

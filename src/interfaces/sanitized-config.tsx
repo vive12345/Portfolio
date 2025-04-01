@@ -102,10 +102,9 @@ export interface SanitizedPublication {
   description?: string;
 }
 export interface SanitizedTestimonial {
-  name: string;
-  role: string;
-  company?: string;
+ 
   testimonial: string;
+  name: string;
 }
 export interface SanitizedGoogleAnalytics {
   id?: string;

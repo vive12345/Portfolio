@@ -1,5 +1,5 @@
 import { hotjar } from 'react-hotjar';
-import { LOCAL_STORAGE_KEY_NAME } from '../constants';
+// import { LOCAL_STORAGE_KEY_NAME } from '../constants';
 // import { DEFAULT_CUSTOM_THEME } from '../constants/default-custom-theme';
 // import { DEFAULT_THEMES } from '../constants/default-themes';
 import colors from '../data/colors.json';
@@ -104,6 +104,7 @@ export const getSanitizedConfig = (
           (item) => item.institution || item.Ilocation || item.degree || item.from || item.to,
         ) || [],
       publications: config?.publications?.filter((item) => item.title) || [],
+      testimonials: config?.testimonials?.filter((item) => item.name) || [],
 
       googleAnalytics: {
         id: config?.googleAnalytics?.id,
