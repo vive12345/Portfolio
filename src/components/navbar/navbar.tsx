@@ -1,18 +1,21 @@
 // src/components/navbar/navbar.tsx
 import { useState, useEffect } from 'react';
 import { RiMenuLine, RiCloseLine } from 'react-icons/ri';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { SanitizedGithub, SanitizedSocial } from '../../interfaces/sanitized-config';
 
 interface NavbarProps {
   github: SanitizedGithub;
   social: SanitizedSocial;
   loading: boolean;
+  navItems: Array<{ label: string; link: string }>;
 }
 
-const Navbar = ({ github, social, loading }: NavbarProps) => {
+const Navbar = ({ github, social, loading, navItems }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const DISPLAY_NAME = 'Vipsa Kamani';
+  const SUBTITLE = 'Software Enginerring';
 
   // Check if screen is mobile size
   useEffect(() => {
@@ -36,19 +39,6 @@ const Navbar = ({ github, social, loading }: NavbarProps) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Navigation items with section IDs that match your page sections
-  const navItems = [
-    { label: 'HOME', link: '#' },
-    { label: 'ABOUT ME', link: '#about'},
-    { label: 'EXPERIENCE', link: '#experience' },
-    { label: 'EDUCATION', link: '#education' },
-    { label: 'PROJECTS', link: '#projects' },
-    { label: 'SKILLS', link: '#skills' },
-    { label: 'CERTIFICATIONS', link: '#certifications' },
-    { label: 'VOLUNTEER', link: '#volunteer' },
-    { label: 'LIFE OUTSIDE', link: '#life-outside' },
-  ];
-  
   // Function to handle smooth scrolling
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
@@ -88,10 +78,10 @@ const Navbar = ({ github, social, loading }: NavbarProps) => {
     <nav className="fixed top-0 left-0 w-80 h-full bg-transparent backdrop-blur-sm flex flex-col items-center py-8 shadow-lg z-40">
       {/* Profile Photo */}
       <div className="avatar mb-6">
-        <div className="w-32 h-32 rounded-full overflow-hidden ring-4 ring-indigo-500 ring-offset-2 ring-offset-base-100 shadow-lg">
+        <div className="w-36 h-36 rounded-full overflow-hidden ring-4 ring-indigo-500 ring-offset-2 ring-offset-base-100 shadow-lg">
           <img 
             src={`https://github.com/${github.username}.png`} 
-            alt={`${github.username}`}
+            alt={DISPLAY_NAME}
             className="object-cover w-full h-full"
           />
         </div>
@@ -99,9 +89,9 @@ const Navbar = ({ github, social, loading }: NavbarProps) => {
       
       {/* Name and Title */}
       <h1 className="text-xl font-bold text-base-content">
-        {loading ? 'Loading...' : github.username}
+        {loading ? 'Loading...' : DISPLAY_NAME}
       </h1>
-      <h2 className="text-indigo-400 mb-8 text-sm">SOFTWARE ENGINEERING</h2>
+      <h2 className="text-indigo-400 mb-8 text-sm text-center uppercase tracking-wide">{SUBTITLE}</h2>
       
       {/* Navigation Links */}
       <div className="w-full px-4">
@@ -143,6 +133,13 @@ const Navbar = ({ github, social, loading }: NavbarProps) => {
             <FaLinkedin size={24} />
           </a>
         )}
+        <a
+          href="mailto:vipsakamani11@gmail.com"
+          className="text-base-content hover:text-indigo-400 transition-colors"
+          aria-label="Email"
+        >
+          <FaEnvelope size={24} />
+        </a>
       </div>
     </nav>
   );
@@ -153,19 +150,19 @@ const Navbar = ({ github, social, loading }: NavbarProps) => {
       <nav className="fixed top-0 left-0 w-full bg-base-100 bg-opacity-90 backdrop-blur-sm flex justify-between items-center p-4 shadow-md z-40">
         <div className="flex items-center">
           <div className="avatar mr-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-indigo-500">
+            <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-indigo-500">
               <img 
                 src={`https://github.com/${github.username}.png`} 
-                alt={`${github.username}`}
+                alt={DISPLAY_NAME}
                 className="object-cover w-full h-full"
               />
             </div>
           </div>
           <div>
             <h1 className="text-base font-bold text-base-content">
-              {loading ? 'Loading...' : github.username}
+              {loading ? 'Loading...' : DISPLAY_NAME}
             </h1>
-            <h2 className="text-indigo-400 text-xs">SOFTWARE ENGINEERING</h2>
+            <h2 className="text-indigo-400 text-xs uppercase tracking-wide">{SUBTITLE}</h2>
           </div>
         </div>
         
@@ -220,6 +217,12 @@ const Navbar = ({ github, social, loading }: NavbarProps) => {
                   <FaLinkedin size={28} />
                 </a>
               )}
+              <a
+                href="mailto:vipsakamani11@gmail.com"
+                className="text-base-content hover:text-indigo-400 transition-colors"
+              >
+                <FaEnvelope size={28} />
+              </a>
             </div>
           </div>
         </div>

@@ -54,6 +54,34 @@ export const getSanitizedConfig = (
           header: config?.projects?.external?.header || 'My Projects',
           projects: config?.projects?.external?.projects || [],
         },
+        custom: {
+          display: config?.projects?.custom?.display ?? true,
+          header: config?.projects?.custom?.header || 'Projects',
+          projects:
+            config?.projects?.custom?.projects
+              ?.filter(
+                (project) =>
+                  project &&
+                  (project.name || project.about || project.whatIDid?.length),
+              )
+              .map((project) => ({
+                name: project.name,
+                about: project.about,
+                whatIDid: project.whatIDid?.filter(Boolean) || [],
+                improvements: project.improvements,
+                timeline: project.timeline,
+                techStack: project.techStack?.filter(Boolean) || [],
+                domain: project.domain,
+                githubUrl: project.githubUrl,
+                companyUrl: project.companyUrl,
+                documentationUrl: project.documentationUrl,
+                articleUrl: project.articleUrl,
+                youtubeUrl: project.youtubeUrl,
+                category: project.category,
+                contributors: project.contributors?.filter(Boolean) || [],
+                achievements: project.achievements?.filter(Boolean) || [],
+              })) || [],
+        },
       },
       seo: {
         title: config?.seo?.title,
@@ -102,11 +130,28 @@ export const getSanitizedConfig = (
       educations:
         config?.educations?.filter(
           (item) => item.institution || item.Ilocation || item.degree || item.from || item.to,
-        ) || [],
+        )?.map((edu) => ({
+          institution: edu.institution,
+          Ilocation: (edu as any).Ilocation,
+          location: (edu as any).location,
+          degree: edu.degree,
+          from: edu.from,
+          to: edu.to,
+          transcript: edu.transcript,
+          institutionLink: (edu as any).institutionLink,
+          summary: (edu as any).summary,
+        })) || [],
       publications: config?.publications?.filter((item) => item.title) || [],
       testimonials: config?.testimonials?.filter((item) => item.name) || [],
       lifeOutsideWork: config?.lifeOutsideWork || [],
       volunteerWork: config?.volunteerWork || [],
+      journey: config?.journey?.title
+        ? {
+            title: config.journey.title,
+            subtitle: config.journey.subtitle,
+            paragraphs: config.journey.paragraphs?.filter(Boolean) || [],
+          }
+        : undefined,
 
       googleAnalytics: {
         id: config?.googleAnalytics?.id,

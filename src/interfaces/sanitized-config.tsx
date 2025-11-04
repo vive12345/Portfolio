@@ -31,9 +31,40 @@ export interface SanitizedExternalProjects {
   projects: SanitizedExternalProject[];
 }
 
+export interface SanitizedCustomProject {
+  name: string;
+  about?: string;
+  whatIDid?: string[];
+  improvements?: string;
+  timeline?: string;
+  techStack?: string[];
+  domain?: string;
+  githubUrl?: string;
+  companyUrl?: string;
+  documentationUrl?: string;
+  articleUrl?: string;
+  youtubeUrl?: string;
+  category?: string;
+  contributors?: string[];
+  achievements?: string[];
+}
+
+export interface SanitizedCustomProjects {
+  display: boolean;
+  header: string;
+  projects: SanitizedCustomProject[];
+}
+
+export interface SanitizedJourney {
+  title: string;
+  subtitle?: string;
+  paragraphs: string[];
+}
+
 export interface SanitizedProjects {
   github: SanitizedGitHubProjects;
   external: SanitizedExternalProjects;
+  custom: SanitizedCustomProjects;
 }
 
 export interface SanitizedSEO {
@@ -82,15 +113,20 @@ export interface SanitizedCertification {
   name?: string;
   year?: string;
   link?: string;
+  organization: string;
+  image: string;
 }
 
 export interface SanitizedEducation {
   institution?: string;
   Ilocation?: string;
+  location?: string;
   degree?: string;
   from: string;
   to: string;
   transcript?: string;
+  institutionLink?: string;
+  summary?: string;
 }
 
 export interface SanitizedPublication {
@@ -104,6 +140,7 @@ export interface SanitizedPublication {
 export interface SanitizedTestimonial {
   testimonial: string;
   name: string;
+  title: string;
 }
 export interface SanitizedLifeArea {
   title: string;
@@ -116,8 +153,11 @@ export interface SanitizedVolunteerWork {
   organization: string;
   location?: string;
   period: string;
-  description: string;
+  points?: string[];
   icon: string;
+  documentUrl?: string;
+  certificateUrl?: string;
+  organizationLink?: string;
   imageUrl?: string;
 }
 export interface SanitizedGoogleAnalytics {
@@ -169,6 +209,7 @@ export interface SanitizedConfig {
   testimonials: Array<SanitizedTestimonial>;
   lifeOutsideWork: Array<SanitizedLifeArea>;
   volunteerWork?: Array<VolunteerWork>;
+  journey?: SanitizedJourney;
   googleAnalytics: SanitizedGoogleAnalytics;
   hotjar: SanitizedHotjar;
   blog: SanitizedBlog;

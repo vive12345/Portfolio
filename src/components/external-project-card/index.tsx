@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import LazyImage from '../lazy-image';
 import { ga, skeleton } from '../../utils';
 import { SanitizedExternalProject } from '../../interfaces/sanitized-config';
@@ -66,27 +65,22 @@ const ExternalProjectCard = ({
     return array;
   };
 
+  const handleCommitClick = (title: string, link: string) => {
+    try {
+      if (googleAnalyticId) {
+        ga.event('Click External Project', { post: title });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    window?.open(link, '_blank');
+  };
+
   const renderExternalProjects = () => {
     return externalProjects.map((item, index) => (
-      <a
-        className="card shadow-lg compact bg-transparent border border-slate-700/30 cursor-pointer transition-all duration-300 hover:bg-gradient-to-br hover:from-red-500/20 hover:to-purple-600/30 backdrop-blur-sm"
+      <div
+        className="card shadow-lg compact bg-transparent border border-slate-700/30 transition-all duration-300 hover:bg-gradient-to-br hover:from-red-500/20 hover:to-purple-600/30 backdrop-blur-sm"
         key={index}
-        href={item.link}
-        onClick={(e) => {
-          e.preventDefault();
-
-          try {
-            if (googleAnalyticId) {
-              ga.event('Click External Project', {
-                post: item.title,
-              });
-            }
-          } catch (error) {
-            console.error(error);
-          }
-
-          window?.open(item.link, '_blank');
-        }}
       >
         <div className="p-8 h-full w-full">
           <div className="flex items-center flex-col">
@@ -97,7 +91,7 @@ const ExternalProjectCard = ({
                     {item.title}
                   </h2>
                   {item.imageUrl && (
-                    <div className="avatar opacity-90">
+                    <div className="avatar opacity-90 mb-3">
                       <div className="w-24 h-24 mask mask-squircle">
                         <LazyImage
                           src={item.imageUrl}
@@ -114,12 +108,27 @@ const ExternalProjectCard = ({
                   <p className="mt-2 text-base-content text-opacity-60 text-sm text-justify">
                     {item.description}
                   </p>
+                  {item.link && (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        handleCommitClick(item.title, item.link);
+                      }}
+                      className="mt-4 inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
+                    >
+                      <span>View commit</span>
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </a>
+      </div>
     ));
   };
 

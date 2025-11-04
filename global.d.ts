@@ -83,10 +83,62 @@ interface ExternalProjects {
   }[];
 }
 
+interface CustomProject {
+  name: string;
+  about?: string;
+  whatIDid?: Array<string>;
+  improvements?: string;
+  techStack?: Array<string>;
+  domain?: string;
+  githubUrl?: string;
+  companyUrl?: string;
+  documentationUrl?: string;
+  articleUrl?: string;
+  youtubeUrl?: string;
+  category?: string;
+  contributors?: Array<string>;
+}
+
+interface CustomProjects {
+  /**
+   * Display Projects?
+   */
+  display?: boolean;
+
+  /**
+   * Header
+   */
+  header?: string;
+
+  /**
+   * Project list
+   */
+  projects?: Array<CustomProject>;
+}
+
 interface Projects {
   github?: GitHubProjects;
 
   external?: ExternalProjects;
+
+  custom?: CustomProjects;
+}
+
+interface Journey {
+  /**
+   * Journey title
+   */
+  title?: string;
+
+  /**
+   * Optional subtitle
+   */
+  subtitle?: string;
+
+  /**
+   * Story paragraphs
+   */
+  paragraphs?: Array<string>;
 }
 
 interface SEO {
@@ -251,6 +303,7 @@ interface Publication {
 interface Testimonial {  
   testimonial: string;
   name: string;
+  title?: string;
 }
 interface LifeArea {
   title: string;
@@ -427,6 +480,7 @@ interface Config {
   testimonials?: Array<Testimonial>;
   lifeOutsideWork?: Array<LifeArea>;
   volunteerWork?: Array<VolunteerWork>;
+  journey?: Journey;
   /**
    * Resume
    */

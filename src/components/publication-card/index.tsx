@@ -1,8 +1,13 @@
-
-import { FaBook, FaUserAlt, FaUniversity } from 'react-icons/fa';
-import { SanitizedPublication } from '../../interfaces/sanitized-config';
-
-import { skeleton } from '../../utils';
+import React from "react";
+import {
+  FaBook,
+  FaUserAlt,
+  FaUniversity,
+  FaExternalLinkAlt,
+  FaCodeBranch,
+} from "react-icons/fa";
+import { SanitizedPublication } from "../../interfaces/sanitized-config";
+import { skeleton } from "../../utils";
 
 const PublicationCard = ({
   publications,
@@ -11,111 +16,92 @@ const PublicationCard = ({
   publications: SanitizedPublication[];
   loading: boolean;
 }) => {
-  const renderSkeleton = () => {
-    const array = [];
-    for (let index = 0; index < publications.length; index++) {
-      array.push(
-        <div className="card shadow-lg compact bg-base-100" key={index}>
-          <div className="p-6 h-full w-full">
-            <div className="w-full">
-              <h2 className="mb-2">
-                {skeleton({
-                  widthCls: 'w-32',
-                  heightCls: 'h-8',
-                  className: 'mb-2 mx-auto',
-                })}
-              </h2>
-              <div>
-                {skeleton({
-                  widthCls: 'w-20',
-                  heightCls: 'h-4',
-                  className: 'mb-2 mx-auto',
-                })}
-              </div>
-              <div>
-                {skeleton({
-                  widthCls: 'w-20',
-                  heightCls: 'h-4',
-                  className: 'mb-2 mx-auto',
-                })}
-              </div>
-              <div>
-                {skeleton({
-                  widthCls: 'w-full',
-                  heightCls: 'h-4',
-                  className: 'mb-2 mx-auto',
-                })}
-              </div>
-            </div>
-          </div>
+  // 🔹 Skeleton loader for horizontal layout
+  const renderSkeleton = () =>
+    Array.from({ length: publications.length || 3 }).map((_, i) => (
+      <div
+        key={i}
+        className="bg-base-100 bg-opacity-20 border border-base-300 border-opacity-30 rounded-xl p-5 mb-4 flex flex-col sm:flex-row items-start justify-between"
+      >
+        <div className="flex-1">
+          {skeleton({ widthCls: "w-3/4", heightCls: "h-5", className: "mb-3" })}
+          {skeleton({ widthCls: "w-1/2", heightCls: "h-4", className: "mb-2" })}
+          {skeleton({ widthCls: "w-full", heightCls: "h-3" })}
         </div>
-      );
-    }
+      </div>
+    ));
 
-    return array;
-  };
-
-  const renderPublications = () => {
-    return publications.map((item, index) => (
+  // 🔹 Render publication rows
+  const renderPublications = () =>
+    publications.map((item, index) => (
       <a
-        className="card shadow-lg compact bg-transparent border border-slate-700/30 cursor-pointer transition-all duration-300 hover:bg-gradient-to-br hover:from-green-500/20 hover:to-teal-600/30 backdrop-blur-sm"
         key={index}
         href={item.link}
         target="_blank"
         rel="noreferrer"
+        className="group flex flex-col sm:flex-row items-start sm:items-center justify-between bg-base-100 bg-opacity-20 border border-base-300 border-opacity-30 rounded-xl p-5 mb-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:bg-gradient-to-br hover:from-green-500/10 hover:to-teal-600/20"
       >
-        <div className="p-6 h-full w-full">
-          <div className="w-full">
-            <h2 className="font-medium text-base-content opacity-70 mb-3 flex items-center">
-              <FaBook className="mr-2" /> {item.title}
-            </h2>
-            
-            {(item.conferenceName || item.journalName) && (
-              <div className="mb-2 flex items-center text-base-content opacity-60 text-sm">
-                <FaUniversity className="mr-2" />
-                <span>
-                  {item.journalName && <span>{item.journalName}</span>}
-                  {item.conferenceName && <span>{item.conferenceName}</span>}
-                </span>
-              </div>
-            )}
-            
-            {item.authors && (
-              <div className="mb-3 flex items-center text-base-content opacity-60 text-sm">
-                <FaUserAlt className="mr-2" />
-                <span>{item.authors}</span>
-              </div>
-            )}
-            
-            {item.description && (
-              <p className="mt-3 text-base-content text-opacity-60 text-sm">
-                {item.description}
-              </p>
-            )}
-          </div>
+        {/* Left Side: Title + Meta */}
+        <div className="flex-1 pr-4">
+          <h2 className="font-semibold text-base-content opacity-90 mb-2 flex items-center text-lg">
+            <FaBook className="mr-2 text-primary opacity-80" />
+            {item.title}
+            <FaExternalLinkAlt className="ml-2 text-xs opacity-70 group-hover:text-primary" />
+          </h2>
+
+          {/* Journal or PR Source */}
+          {(item.conferenceName || item.journalName) && (
+            <div className="flex items-center text-sm text-base-content/70 mb-1">
+              <FaUniversity className="mr-2 text-[0.8rem] text-primary/70" />
+              {item.journalName || item.conferenceName}
+            </div>
+          )}
+
+          {/* Authors / Role */}
+          {item.authors && (
+            <div className="flex items-center text-sm text-base-content/70 mb-2">
+              <FaUserAlt className="mr-2 text-[0.8rem] text-primary/70" />
+              {item.authors}
+            </div>
+          )}
+
+          {/* Description */}
+          {item.description && (
+            <p className="text-sm text-base-content/80 leading-relaxed">
+              {item.description}
+            </p>
+          )}
+        </div>
+
+        {/* Right Side: Small Tag */}
+        <div className="mt-3 sm:mt-0 flex items-center justify-end text-xs text-primary/70 font-medium whitespace-nowrap">
+          <FaCodeBranch className="mr-1" />
+          Open Source Contribution
         </div>
       </a>
     ));
-  };
 
+  // 🔹 Main Layout
   return (
     <div className="col-span-1 lg:col-span-2">
       <div className="card bg-transparent shadow-none">
         <div className="card-body px-0 pb-0">
-          <div className="flex items-center justify-between mb-4">
-            <h5 className="card-title text-base-content opacity-70 flex items-center">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-6">
+            <h5 className="card-title text-base-content opacity-80 flex items-center text-lg font-bold">
               {loading ? (
-                skeleton({ widthCls: 'w-40', heightCls: 'h-8' })
+                skeleton({ widthCls: "w-40", heightCls: "h-8" })
               ) : (
                 <>
-                  <FaBook className="mr-2" />
-                  <span>Open Source Project Contribution</span>
+                  <FaBook className="text-primary mr-2" />
+                  <span>Industrial Projects</span>
                 </>
               )}
             </h5>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          {/* Horizontal Block Layout */}
+          <div>
             {loading ? renderSkeleton() : renderPublications()}
           </div>
         </div>

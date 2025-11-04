@@ -17,7 +17,6 @@ interface EnhancedExperience extends SanitizedExperience {
   description?: string[];
   technologies?: string[];
   location?: string;
-  letterLink?: string;
 }
 
 const ExperienceItem: React.FC<{
@@ -31,7 +30,6 @@ const ExperienceItem: React.FC<{
     position,
     company,
     companyLink,
-    letterLink,
     description,
     technologies,
     location,
@@ -95,12 +93,27 @@ const ExperienceItem: React.FC<{
         <div className="mt-4 pt-3 border-t border-base-300 border-opacity-30">
           {/* Description section - existing */}
           {description && description.length > 0 && (
-            <div className="mb-3">
-              <ul className="list-disc pl-5 space-y-2 text-sm opacity-80">
-                {description.map((item, idx) => (
-                  <li key={idx}>{item}</li>
-                ))}
-              </ul>
+            <div className="mb-3 space-y-3">
+              <div>
+                <h4 className="text-sm font-semibold text-base-content/80 mb-1">
+                  Project Overview
+                </h4>
+                <p className="text-sm leading-relaxed text-base-content/80">
+                  {description[0]}
+                </p>
+              </div>
+              {description.length > 1 && (
+                <div>
+                  <h4 className="text-sm font-semibold text-base-content/80 mb-1">
+                    Contributions & Outcomes
+                  </h4>
+                  <ul className="list-disc pl-5 space-y-2 text-sm opacity-80">
+                    {description.slice(1).map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           )}
 
@@ -123,23 +136,6 @@ const ExperienceItem: React.FC<{
             </div>
           )}
           
-          {/* Letter Link section - NEW */}
-          {letterLink && (
-            <div className="mt-4">
-              <a 
-                href={letterLink}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center text-primary hover:underline text-sm"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                View Documentation
-              </a>
-            </div>
-          )}
         </div>
       )}
     </div>
@@ -203,7 +199,6 @@ const ExperienceCard = ({
     description: (exp as any).description || [],
     technologies: (exp as any).technologies || [],
     location: (exp as any).location,
-    letterLink: (exp as any).letterLink,
   }));
 
   // Track expanded state for each experience item
@@ -293,7 +288,7 @@ const ExperienceCard = ({
               {loading ? (
                 skeleton({ widthCls: "w-32", heightCls: "h-8" })
               ) : (
-                <span>Professional Experience</span>
+                <span>Experience</span>
               )}
             </h5>
           </div>

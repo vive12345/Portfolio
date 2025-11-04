@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { formatDistance } from "date-fns";
 import { HelmetProvider } from "react-helmet-async";
@@ -11,15 +11,15 @@ import AboutMe from "./about-me";
 import ExperienceCard from "./experience-card";
 import EducationCard from "./education-card";
 import SkillCard from "./skill-card";
-import GithubProjectCard from "./github-project-card";
-import PublicationCard from "./publication-card";
 import TestimonialCard from "./testimonial-card";
 import ExternalProjectCard from "./external-project-card";
+import Projects from "./projects";
+import ContactCard from "./contact-card";
 import BlogCard from "./blog-card";
 import Footer from "./footer";
 import Starfield from "./starfield";
-import LifeOutsideWork from "./lifeoutsidework-card";
 import VolunteerWork from "./volunteer-card";
+import CertificationCard from "./certification-card";
 // Constants and utils
 import {
   CustomError,
@@ -54,7 +54,59 @@ const GitProfile = ({ config }: { config: Config }) => {
   const [error, setError] = useState<CustomError | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [githubProjects, setGithubProjects] = useState<GithubProject[]>([]);
+  const [, setGithubProjects] = useState<GithubProject[]>([]);
+
+  const navItems = useMemo(() => {
+    if (!("github" in sanitizedConfig)) {
+      return [{ label: "HOME", link: "#" }];
+    }
+
+    const cfg = sanitizedConfig as SanitizedConfig;
+    const items: Array<{ label: string; link: string }> = [
+      { label: "HOME", link: "#" },
+      { label: "ABOUT ME", link: "#about" },
+    ];
+
+    if (cfg.experiences.length !== 0) {
+      items.push({ label: "EXPERIENCE", link: "#experience" });
+    }
+
+    if (cfg.educations.length !== 0) {
+      items.push({ label: "EDUCATION", link: "#education" });
+    }
+
+    if (
+      (cfg.projects.custom.display &&
+        cfg.projects.custom.projects.length !== 0) ||
+      cfg.projects.external.projects.length !== 0
+    ) {
+      items.push({ label: "PROJECTS", link: "#projects" });
+    }
+
+    if (cfg.certifications.length !== 0) {
+      items.push({ label: "CERTIFICATIONS", link: "#certifications" });
+    }
+
+    if (cfg.skills.length !== 0) {
+      items.push({ label: "SKILLS", link: "#skills" });
+    }
+
+    if (cfg.testimonials.length !== 0) {
+      items.push({ label: "TESTIMONIALS", link: "#testimonials" });
+    }
+
+    if (cfg.volunteerWork?.length) {
+      items.push({ label: "VOLUNTEER", link: "#volunteer" });
+    }
+
+    if (cfg.blog.display) {
+      items.push({ label: "BLOG", link: "#blog" });
+    }
+
+    items.push({ label: "CONTACT", link: "#contact" });
+
+    return items;
+  }, [sanitizedConfig]);
 
   const getGithubProjects = useCallback(
     async (publicRepoCount: number): Promise<GithubProject[]> => {
@@ -211,6 +263,7 @@ const GitProfile = ({ config }: { config: Config }) => {
               github={sanitizedConfig.github}
               social={sanitizedConfig.social}
               loading={loading}
+              navItems={navItems}
             />
 
             <div className="p-4 lg:p-10 min-h-full bg-opacity-70 bg-base-300">
@@ -220,7 +273,7 @@ const GitProfile = ({ config }: { config: Config }) => {
                   {/* Consistent vertical spacing */}
                   {/* About Me Section */}
                   <div className={sectionClass} id="about">
-                    <AboutMe />
+                    <AboutMe journey={(sanitizedConfig as SanitizedConfig).journey} />
                   </div>
                   {/* Experience Section */}
                   {sanitizedConfig.experiences.length !== 0 && (
@@ -240,10 +293,36 @@ const GitProfile = ({ config }: { config: Config }) => {
                       />
                     </div>
                   )}
-                  
                   {/* GitHub Projects Section */}
-                  {sanitizedConfig.projects.github.display && (
+                  {(sanitizedConfig.projects.custom.display &&
+                    sanitizedConfig.projects.custom.projects.length !== 0) ||
+                  sanitizedConfig.projects.external.projects.length !== 0 ? (
                     <div className={sectionClass} id="projects">
+                      {sanitizedConfig.projects.custom.display &&
+                        sanitizedConfig.projects.custom.projects.length !== 0 && (
+                          <Projects
+                            header={sanitizedConfig.projects.custom.header}
+                            projects={sanitizedConfig.projects.custom.projects}
+                            loading={loading}
+                          />
+                        )}
+                      {sanitizedConfig.projects.external.projects.length !== 0 && (
+                        <div className="mt-6">
+                          <ExternalProjectCard
+                            loading={loading}
+                            header={sanitizedConfig.projects.external.header}
+                            externalProjects={
+                              sanitizedConfig.projects.external.projects
+                            }
+                            googleAnalyticId={sanitizedConfig.googleAnalytics.id}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  ) : null}
+                  {/* GitHub Projects Section temporarily disabled per request */}
+                  {/* {sanitizedConfig.projects.github.display && (
+                    <div className={sectionClass} id="github-projects">
                       <GithubProjectCard
                         header={sanitizedConfig.projects.github.header}
                         limit={sanitizedConfig.projects.github.automatic.limit}
@@ -253,26 +332,12 @@ const GitProfile = ({ config }: { config: Config }) => {
                         googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
                       />
                     </div>
-                  )}
-                  {/* External Projects Section */}
-                  {sanitizedConfig.projects.external.projects.length !== 0 && (
-                    <div className={sectionClass} id="external-projects">
-                      <ExternalProjectCard
+                  )} */}
+                  {sanitizedConfig.certifications.length !== 0 && (
+                    <div className={sectionClass} id="certifications">
+                      <CertificationCard
                         loading={loading}
-                        header={sanitizedConfig.projects.external.header}
-                        externalProjects={
-                          sanitizedConfig.projects.external.projects
-                        }
-                        googleAnalyticId={sanitizedConfig.googleAnalytics.id}
-                      />
-                    </div>
-                  )}
-                  {/* Publications Section */}
-                  {sanitizedConfig.publications.length !== 0 && (
-                    <div className={sectionClass} id="publications">
-                      <PublicationCard
-                        loading={loading}
-                        publications={sanitizedConfig.publications}
+                        certifications={sanitizedConfig.certifications}
                       />
                     </div>
                   )}
@@ -294,21 +359,11 @@ const GitProfile = ({ config }: { config: Config }) => {
                       />
                     </div>
                   )}
-              
                   {sanitizedConfig.volunteerWork?.length !== 0 && (
                     <div className={sectionClass} id="volunteer">
                       <VolunteerWork
                         loading={loading}
                         volunteerWorks={sanitizedConfig.volunteerWork || []}
-                      />
-                    </div>
-                  )}
-                  {/* Life Outside Work Section */}
-                  {sanitizedConfig.lifeOutsideWork.length !== 0 && (
-                    <div className={sectionClass} id="life-outside">
-                      <LifeOutsideWork
-                        loading={loading}
-                        lifeAreas={sanitizedConfig.lifeOutsideWork}
                       />
                     </div>
                   )}
@@ -322,6 +377,15 @@ const GitProfile = ({ config }: { config: Config }) => {
                       />
                     </div>
                   )}
+                  <div className={sectionClass} id="contact">
+                    <ContactCard
+                      loading={loading}
+                      social={sanitizedConfig.social}
+                      resume={sanitizedConfig.resume}
+                      githubUsername={sanitizedConfig.github.username}
+                      profile={profile}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,8 +1,14 @@
-
-import React, { useState } from 'react';
-import { SanitizedTestimonial } from '../../interfaces/sanitized-config';
-import { skeleton } from '../../utils';
-import { FaQuoteLeft, FaQuoteRight, FaBuilding, FaBriefcase, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React, { useState } from "react";
+import { SanitizedTestimonial } from "../../interfaces/sanitized-config";
+import { skeleton } from "../../utils";
+import {
+  FaQuoteLeft,
+  FaQuoteRight,
+  FaBuilding,
+  FaBriefcase,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
 
 const TestimonialCard = ({
   testimonials,
@@ -14,13 +20,13 @@ const TestimonialCard = ({
   const [activeIndex, setActiveIndex] = useState(0);
 
   const nextTestimonial = () => {
-    setActiveIndex((prevIndex) => 
+    setActiveIndex((prevIndex) =>
       prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevTestimonial = () => {
-    setActiveIndex((prevIndex) => 
+    setActiveIndex((prevIndex) =>
       prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
     );
   };
@@ -30,27 +36,27 @@ const TestimonialCard = ({
       <div className="flex flex-col items-center justify-center p-8">
         <div className="w-full">
           {skeleton({
-            widthCls: 'w-12 mx-auto',
-            heightCls: 'h-12',
-            className: 'mb-6 rounded-full',
+            widthCls: "w-12 mx-auto",
+            heightCls: "h-12",
+            className: "mb-6 rounded-full",
           })}
           {skeleton({
-            widthCls: 'w-full',
-            heightCls: 'h-24',
-            className: 'mb-6',
+            widthCls: "w-full",
+            heightCls: "h-24",
+            className: "mb-6",
           })}
           <div className="mt-8 flex justify-center">
             {skeleton({
-              widthCls: 'w-36',
-              heightCls: 'h-6',
-              className: 'mb-2',
+              widthCls: "w-36",
+              heightCls: "h-6",
+              className: "mb-2",
             })}
           </div>
           <div className="flex justify-center">
             {skeleton({
-              widthCls: 'w-24',
-              heightCls: 'h-4',
-              className: 'mb-2',
+              widthCls: "w-24",
+              heightCls: "h-4",
+              className: "mb-2",
             })}
           </div>
         </div>
@@ -72,51 +78,41 @@ const TestimonialCard = ({
     return (
       <div className="relative">
         {/* Testimonial Content */}
-        <div className="flex flex-col items-center justify-center p-8">
-          <FaQuoteLeft className="text-4xl text-primary opacity-30 mb-4" />
-          
-          <div className="relative min-h-28">
-            <p className="text-base-content text-center text-lg italic mb-6 leading-relaxed">
-              {testimonial.testimonial}
-            </p>
-          </div>
-          
-          <div className="mt-6 text-center">
-            <h3 className="font-bold text-xl mb-1 text-primary">
-              {testimonial.name}
-            </h3>
-            
-            {/* <div className="flex items-center justify-center text-sm opacity-70 space-x-1">
-              {testimonial.role && (
-                <div className="flex items-center">
-                  <FaBriefcase className="mr-1 text-xs" />
-                  <span>{testimonial.role}</span>
-                </div>
-              )}
-              
-              {testimonial.company && (
-                <div className="flex items-center">
-                  <span>•</span>
-                  <FaBuilding className="mx-1 text-xs" />
-                  <span>{testimonial.company}</span>
-                </div>
-              )}
-            </div> */}
-          </div>
-        </div>
-        
+       {/* Testimonial Content */}
+<div className="flex flex-col items-center justify-center py-8 px-16 md:px-24">
+  <FaQuoteLeft className="text-4xl text-primary opacity-30 mb-4" />
+
+  <div className="relative min-h-28">
+    <p className="text-base-content text-center text-lg italic mb-6 leading-relaxed">
+      {testimonial.testimonial}
+    </p>
+  </div>
+
+  <div className="mt-6 text-center">
+    <h3 className="font-bold text-xl mb-1 text-primary">
+      {testimonial.name}
+    </h3>
+    {testimonial.title && (
+      <p className="mt-1 text-xs sm:text-sm font-normal text-base-content/80">
+        {testimonial.title}
+      </p>
+    )}
+  </div>
+</div>
+
+
         {/* Navigation controls - only show if more than one testimonial */}
         {testimonials.length > 1 && (
-          <div className="flex justify-between absolute top-1/2 -translate-y-1/2 w-full px-4">
-            <button 
-              onClick={prevTestimonial} 
+          <div className="flex justify-between absolute top-1/2 -translate-y-1/2 w-full px-5">
+            <button
+              onClick={prevTestimonial}
               className="bg-base-300 hover:bg-primary hover:text-white p-2 rounded-full transition-colors duration-300 opacity-60 hover:opacity-100"
               aria-label="Previous testimonial"
             >
               <FaChevronLeft />
             </button>
-            <button 
-              onClick={nextTestimonial} 
+            <button
+              onClick={nextTestimonial}
               className="bg-base-300 hover:bg-primary hover:text-white p-2 rounded-full transition-colors duration-300 opacity-60 hover:opacity-100"
               aria-label="Next testimonial"
             >
@@ -124,7 +120,7 @@ const TestimonialCard = ({
             </button>
           </div>
         )}
-        
+
         {/* Dots indicator - only show if more than one testimonial */}
         {testimonials.length > 1 && (
           <div className="flex justify-center mt-4 space-x-2">
@@ -133,9 +129,9 @@ const TestimonialCard = ({
                 key={index}
                 onClick={() => setActiveIndex(index)}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === activeIndex 
-                    ? 'bg-primary w-4' 
-                    : 'bg-base-300 opacity-50'
+                  index === activeIndex
+                    ? "bg-primary w-4"
+                    : "bg-base-300 opacity-50"
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
@@ -158,7 +154,7 @@ const TestimonialCard = ({
             )}
           </h5>
         </div>
-        
+
         <div className="p-4">
           {loading ? renderSkeleton() : renderTestimonials()}
         </div>
