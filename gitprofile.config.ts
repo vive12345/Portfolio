@@ -67,8 +67,8 @@ const CONFIG = {
           ],
           domain: "FinTech",
           githubUrl: "https://github.com/vive12345/StockAIExpert",
-          category: "industrial",
-          achievements: ["60% faster load times", "30% faster data retrieval"],
+          category: "industrial/personal",
+        
         },
         {
           name: "WorkScope – AI Workforce Insights",
@@ -92,7 +92,8 @@ const CONFIG = {
           ],
           domain: "Workplace AI",
           githubUrl: "https://github.com/vive12345/WorkScope",
-          category: "academic/personal",
+          companyUrl: "https://rapidise.io/",
+          category: "industrial",
           achievements: [
             "40% latency reduction across productivity dashboards",
           ],
@@ -301,13 +302,13 @@ const CONFIG = {
           title: "workflows4s #30",
           description:
             "DOCS: Added Airflow comparison documentation to help developers understand framework differences",
-          link: "https://github.com/workflows4s/workflows4s/pull/30",
+          link: "https://github.com/business4s/workflows4s/pull/30",
         },
         {
           title: "PostHog #11664",
           description:
             "FIX: Corrected typo in .NET SDK configuration docs improving developer experience",
-          link: "https://github.com/PostHog/posthog/pull/11664",
+          link: "https://github.com/PostHog/posthog.com/pull/11664",
         },
       ],
     },
@@ -315,9 +316,10 @@ const CONFIG = {
   journey: {
     title: "My Journey",
     paragraphs: [
-      "My curiosity for programming started in childhood when I watched my uncle type commands on a screen that felt like pure magic.",
-      "During a summer break in 10th grade, my first computer teacher, Urvi mam, encouraged me to keep going after I solved my first pattern problem on my own.",
-      "After finishing high school I chose Computer Science and Engineering, later joined Arizona State University, and earned the Namu Scholarship for their Software Engineering master’s program—turning early interest into lasting passion.",
+      "My first introduction to programming came as a kid, watching my uncle, a software engineer, create cool things on what looked like a mysterious black screen.",
+      "Years later, during a summer break in 10th grade, my teacher Urvi mam encouraged me to keep exploring after I solved my first pattern problem on day one. She told me my logic was strong and that I should pursue this path—and that advice stayed with me.",
+      "I went on to study Computer Science and Engineering, and later continued my journey at Arizona State University, earning the Namu Scholarship for the Software Engineering master’s program.",
+      "Every project since has reminded me of why I began—to keep that spark of curiosity alive and turn early fascination into lasting impact.",
     ],
   },
   seo: {
@@ -350,7 +352,7 @@ const CONFIG = {
   },
   resume: {
     fileUrl:
-      "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", // Empty fileUrl will hide the `Download Resume` button.
+      "https://drive.google.com/drive/folders/1E52bR-QIc_RQUmLrwCnj-XkLYCDNGpzW?usp=sharing", // Empty fileUrl will hide the `Download Resume` button.
   },
   skills: [
     // Languages & Frameworks
@@ -413,7 +415,7 @@ const CONFIG = {
         "Admissions and marketing teams were exporting batches of monthly spreadsheets and manually loading them into Salesforce Campaign, creating long delays, more manual work and possibility of human error. I helped ship a Drupal-to-Salesforce pipeline that now auto-generates program pages and streams RFI submissions through AWS Lambda/SQS without manual uploads.",
         "Automated the hand-off: I created the RFI proxy so each form now shoots clean, Source-ID-ready data into Salesforce instantly, cutting campaign setup from about an hour to roughly 10 seconds and removing the need for batch exports.",
         "Fixed the scholarship tagging mess: I traced the wrong-state issue to outdated Salesforce queries and a deprecated API, updated them, and saved analysts from repairing thousands of records before every monthly batch run.",
-        "Accelerated follow-up: I worked with the backend engineer on the Lambda/SQS routing logic so inquiries land with the right department and Source ID, reducing the wait for international student responses from five business days to just one or two.",
+        "Accelerated follow-up: I worked with the backend engineer on the Lambda/SQS routing logic so inquiries land with the right department and Source ID, reducing the wait for student responses from five business days to just one or two.",
       ],
     },
     {
@@ -469,22 +471,23 @@ const CONFIG = {
       organization: "Oracle",
       year: "Oct 2025",
       body: "I learned how to design and tune Oracle AI Vector Search, build vector indexes, and serve semantic search workloads that keep latency predictable for AI assistants.",
-      image: "src/assets/Images/genai.png",
-    },
-    {
-      name: "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate",
-      organization: "Oracle",
-      year: "Oct 2025",
-      body: "I mastered OCI AI foundations—standing up data lakes, wiring model endpoints, and choosing the right managed services so teams can ship responsible AI safely.",
-      image: "src/assets/Images/foundAI.png",
+      image: "images/genai.png",
     },
     {
       name: "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional",
       organization: "Oracle",
       year: "Oct 2025",
       body: "I deepened my generative AI skills by fine-tuning foundation models on OCI, managing guardrails, and delivering compliant AI copilots for enterprise workflows.",
-      image: "src/assets/Images/genai.png",
+      image: "images/genai.png",
     },
+    {
+      name: "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate",
+      organization: "Oracle",
+      year: "Oct 2025",
+      body: "I mastered OCI AI foundations—standing up data lakes, wiring model endpoints, and choosing the right managed services so teams can ship responsible AI safely.",
+      image: "images/foundAI.png",
+    },
+    
   ],
   publications: [
     {

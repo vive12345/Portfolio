@@ -10,7 +10,7 @@ const AboutMe = ({
     <div className="col-span-1 lg:col-span-2 mb-6">
       <div className="bg-transparent">
         <div className="p-5">
-          <div className="">
+          <div className="select-text">
             <h2 className="text-3xl font-bold mb-6">WHO AM I?</h2>
 
             <p className="mb-4 text-lg leading-relaxed">
@@ -41,12 +41,12 @@ const AboutMe = ({
                   {journey.title}
                 </h3>
                 {journey.subtitle && (
-                  <p className="uppercase text-sm tracking-wide text-primary/80">
+                  <p className="uppercase text-sm tracking-wide text-primary/80 select-text">
                     {journey.subtitle}
                   </p>
                 )}
                 {journey.paragraphs.map((paragraph, index) => (
-                  <p key={index} className="text-base leading-relaxed">
+                  <p key={index} className="text-base leading-relaxed select-text">
                     {paragraph}
                   </p>
                 ))}

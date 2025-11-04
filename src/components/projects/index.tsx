@@ -1,10 +1,13 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   FaGithub,
   FaExternalLinkAlt,
   FaYoutube,
   FaChevronDown,
   FaChevronUp,
+  FaLayerGroup,
+  FaIndustry,
+  FaUserGraduate,
 } from "react-icons/fa";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { BsFileEarmarkText } from "react-icons/bs";
@@ -46,26 +49,89 @@ const linkConfig = [
   },
 ];
 
+const filterOptions = [
+  {
+    value: "all" as const,
+    label: "All Projects",
+    description: "Browse the complete set of projects.",
+    Icon: FaLayerGroup,
+  },
+  {
+    value: "industrial" as const,
+    label: "Industrial Projects",
+    description: "Focus on client and organizational collaborations.",
+    Icon: FaIndustry,
+  },
+  {
+    value: "academic-personal" as const,
+    label: "Academic/Personal Projects",
+    description: "Highlight learning journeys and passion work.",
+    Icon: FaUserGraduate,
+  },
+];
+
 const Projects: React.FC<Props> = ({ loading = false, header, projects }) => {
-  const [selectedFilter, setSelectedFilter] = useState("industrial");
+  const [selectedFilter, setSelectedFilter] = useState("all");
+  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+  const filterMenuRef = useRef<HTMLDivElement>(null);
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
   const hasProjects = projects?.length > 0;
+  const selectedFilterOption =
+    filterOptions.find((option) => option.value === selectedFilter) ?? filterOptions[0];
+  const SelectedFilterIcon = selectedFilterOption.Icon;
+
+  useEffect(() => {
+    if (!isFilterMenuOpen) {
+      return;
+    }
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        filterMenuRef.current &&
+        !filterMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsFilterMenuOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsFilterMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isFilterMenuOpen]);
 
   const filteredProjects = useMemo(() => {
     if (!hasProjects) {
       return [];
     }
 
+    const normalizeCategory = (category?: string) =>
+      category?.toLowerCase().trim() ?? "";
+
     if (selectedFilter === "industrial") {
       return projects.filter(
-        (project) => project.category?.toLowerCase() === "industrial"
+        (project) => normalizeCategory(project.category) === "industrial"
       );
     }
 
     if (selectedFilter === "academic-personal") {
       return projects.filter((project) => {
-        const category = project.category?.toLowerCase();
-        return category === "academic" || category === "personal" || category === "academic/personal";
+        const category = normalizeCategory(project.category);
+        return (
+          category === "academic" ||
+          category === "personal" ||
+          category === "academic/personal" ||
+          category === "industrial/personal"
+        );
       });
     }
 
@@ -244,15 +310,82 @@ const Projects: React.FC<Props> = ({ loading = false, header, projects }) => {
               )}
             </h5>
             {!loading && hasProjects && (
-              <select
-                className="select select-sm bg-base-200/60 text-base-content/80"
-                value={selectedFilter}
-                onChange={(event) => setSelectedFilter(event.target.value)}
-              >
-                <option value="all">All Projects</option>
-                <option value="industrial">Industrial Projects</option>
-                <option value="academic-personal">Academic/Personal Projects</option>
-              </select>
+              <div className="relative" ref={filterMenuRef}>
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-3 rounded-full border border-primary/50 bg-gradient-to-r from-cyan-500/40 via-primary/25 to-purple-500/40 px-4 py-2 text-sm font-medium text-primary shadow-sm transition-colors duration-200 hover:from-cyan-500/45 hover:to-purple-500/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                  onClick={() => setIsFilterMenuOpen((prev) => !prev)}
+                  aria-haspopup="listbox"
+                  aria-expanded={isFilterMenuOpen}
+                  aria-label="Filter projects"
+                >
+                  <SelectedFilterIcon className="text-lg" />
+                  <span className="flex flex-col text-left leading-tight">
+                    <span className="text-[0.65rem] uppercase tracking-wide text-primary/70">
+                      Filter
+                    </span>
+                    <span className="text-sm font-semibold text-base-content/90">
+                      {selectedFilterOption.label}
+                    </span>
+                  </span>
+                  <span className="ml-auto text-primary">
+                    {isFilterMenuOpen ? (
+                      <FaChevronUp className="text-xs" />
+                    ) : (
+                      <FaChevronDown className="text-xs" />
+                    )}
+                  </span>
+                </button>
+                {isFilterMenuOpen && (
+                  <div
+                    role="listbox"
+                    aria-label="Project categories"
+                    className="absolute right-0 z-20 mt-2 w-72 space-y-1 rounded-2xl border border-base-300/70 bg-base-100 p-3 shadow-2xl"
+                  >
+                    {filterOptions.map((option) => {
+                      const isActive = option.value === selectedFilter;
+                      const OptionIcon = option.Icon;
+
+                      return (
+                        <button
+                          type="button"
+                          key={option.value}
+                          role="option"
+                          aria-selected={isActive}
+                          onClick={() => {
+                            setSelectedFilter(option.value);
+                            setIsFilterMenuOpen(false);
+                          }}
+                          className={`flex w-full items-start gap-3 rounded-xl px-3 py-2 text-left transition-colors duration-200 ${
+                            isActive
+                              ? "bg-primary/20 text-primary shadow-inner"
+                              : "text-base-content/80 hover:bg-base-300/60 hover:text-base-content"
+                          }`}
+                        >
+                          <OptionIcon
+                            className={`mt-0.5 text-lg ${
+                              isActive ? "text-primary" : "text-base-content/60"
+                            }`}
+                          />
+                          <span className="flex flex-col gap-0.5">
+                            <span className="text-sm font-semibold">
+                              {option.label}
+                            </span>
+                            <span className="text-xs text-base-content/60">
+                              {option.description}
+                            </span>
+                          </span>
+                          {isActive && (
+                            <span className="ml-auto text-[0.65rem] uppercase tracking-wide text-primary">
+                              Active
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             )}
           </div>
           <div className="grid grid-cols-1 gap-6">
