@@ -1,0 +1,18 @@
+{
+  "name": "Portfolio",
+  "short_name": "Portfolio",
+  "start_url": "/gitprofile/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "lang": "en",
+  "scope": "/gitprofile/",
+  "description": "Personal Portfolio",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "64x64 32x32 24x24 16x16 192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}

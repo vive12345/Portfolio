@@ -9,11 +9,11 @@ import {
   // SanitizedThemeConfig,
 } from '../interfaces/sanitized-config';
 
-// export const isDarkishTheme = (appliedTheme: string): boolean => {
-//   return ['dark', 'halloween', 'forest', 'black', 'luxury', 'dracula'].includes(
-//     appliedTheme,
-//   );
-// };
+export const isDarkishTheme = (appliedTheme: string): boolean => {
+  return ['dark', 'halloween', 'forest', 'black', 'luxury', 'dracula'].includes(
+    appliedTheme,
+  );
+};
 
 type EventParams = {
   [key: string]: string;
@@ -123,26 +123,46 @@ export const getSanitizedConfig = (
             experience.to,
         ) || [],
       certifications:
-        config?.certifications?.filter(
-          (certification) =>
-            certification.year || certification.name || certification.body,
-        ) || [],
+        config?.certifications
+          ?.filter(
+            (certification) =>
+              certification?.year ||
+              certification?.name ||
+              certification?.body ||
+              certification?.organization ||
+              certification?.image,
+          )
+          .map((certification) => ({
+            body: certification.body,
+            name: certification.name,
+            year: certification.year,
+            link: certification.link,
+            organization: certification.organization || '',
+            image: certification.image || '',
+          })) || [],
       educations:
         config?.educations?.filter(
           (item) => item.institution || item.Ilocation || item.degree || item.from || item.to,
         )?.map((edu) => ({
           institution: edu.institution,
-          Ilocation: (edu as any).Ilocation,
-          location: (edu as any).location,
+          Ilocation: edu.Ilocation,
+          location: edu.location,
           degree: edu.degree,
           from: edu.from,
           to: edu.to,
           transcript: edu.transcript,
-          institutionLink: (edu as any).institutionLink,
-          summary: (edu as any).summary,
+          institutionLink: edu.institutionLink,
+          summary: edu.summary,
         })) || [],
       publications: config?.publications?.filter((item) => item.title) || [],
-      testimonials: config?.testimonials?.filter((item) => item.name) || [],
+      testimonials:
+        config?.testimonials
+          ?.filter((item) => item.name && item.testimonial)
+          .map((item) => ({
+            testimonial: item.testimonial,
+            name: item.name,
+            title: item.title ?? '',
+          })) || [],
       lifeOutsideWork: config?.lifeOutsideWork || [],
       volunteerWork: config?.volunteerWork || [],
       journey: config?.journey?.title

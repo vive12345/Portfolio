@@ -1,14 +1,7 @@
-import React, { useState } from "react";
-import { SanitizedTestimonial } from "../../interfaces/sanitized-config";
-import { skeleton } from "../../utils";
-import {
-  FaQuoteLeft,
-  FaQuoteRight,
-  FaBuilding,
-  FaBriefcase,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
+import { useState } from 'react';
+import { SanitizedTestimonial } from '../../interfaces/sanitized-config';
+import { skeleton } from '../../utils';
+import { FaQuoteLeft, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const TestimonialCard = ({
   testimonials,

@@ -88,6 +88,7 @@ interface CustomProject {
   about?: string;
   whatIDid?: Array<string>;
   improvements?: string;
+  timeline?: string;
   techStack?: Array<string>;
   domain?: string;
   githubUrl?: string;
@@ -97,6 +98,7 @@ interface CustomProject {
   youtubeUrl?: string;
   category?: string;
   contributors?: Array<string>;
+  achievements?: Array<string>;
 }
 
 interface CustomProjects {
@@ -281,14 +283,20 @@ interface Certification {
   name?: string;
   year?: string;
   link?: string;
+  organization?: string;
+  image?: string;
 }
 
 interface Education {
   institution?: string;
   Ilocation?: string;
+  location?: string;
   degree?: string;
   from: string;
   to: string;
+  transcript?: string;
+  institutionLink?: string;
+  summary?: string;
 }
 
 interface Publication {
@@ -518,3 +526,5 @@ interface Config {
 }
 
 declare const CONFIG: Config;
+
+declare module 'maath/random/dist/maath-random.esm';

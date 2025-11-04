@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-// import { isDarkishTheme } from '../../utils';
+import { isDarkishTheme } from '../../utils';
 
 type HeadTagEditorProps = {
   googleAnalyticsId?: string;
@@ -13,15 +13,12 @@ type HeadTagEditorProps = {
  * @param {HeadTagEditorProps} appliedTheme - The applied theme.
  * @return {React.ReactElement} The head tag editor component.
  */
-const HeadTagEditor: React.FC<HeadTagEditorProps> = ({
-  googleAnalyticsId,
-  appliedTheme,
-}) => {
+const HeadTagEditor = ({ googleAnalyticsId, appliedTheme }: HeadTagEditorProps) => {
   return (
     <Helmet>
       <meta
         name="theme-color"
-        // content={isDarkishTheme(appliedTheme) ? '#000000' : '#ffffff'}
+        content={isDarkishTheme(appliedTheme) ? '#000000' : '#ffffff'}
       />
       {googleAnalyticsId && (
         <>
